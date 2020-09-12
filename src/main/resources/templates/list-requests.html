@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>All Requests</title>
+<style>
+table {
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+}
+
+ 
+</style>
+</head>
+
+<body>
+	<a th:href="@{/logout}">Sign out</a> | 
+	<a th:href="@{{userId}/edit(userId=${userId})}">Add Request</a>
+	<hr/>
+	<div th:switch="${requests}">
+		<h2 th:case="null">No record found !!</h2>
+		<div th:case="*">
+			<table>
+				<thead>
+					<tr>
+						<th>Category</th>
+						<th>Details</th>
+						<th>Priority</th>
+						<th>Subject</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="request : ${requests}">
+						<td th:text="${request.requestCategory}"></td>
+						<td th:text="${request.requestDetails}"></td>
+						<td th:text="${request.requestPriority}"></td>
+						<td th:text="${request.requestSubject}"></td>
+						<td><a
+							th:href="@{/users/{userId}/edit/{rid}(rid=${request.id},userId=${userId})}">
+								edit </a></td>
+						<td><a
+							th:href="@{/users/{userId}/delete/{id}(id=${request.id},userId=${userId})}">
+								delete </a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

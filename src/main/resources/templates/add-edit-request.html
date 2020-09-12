@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Add/Edit Request</title>
+</head>
+
+<body>
+	<h3>Add/Edit Request</h3>
+	<hr />
+	<form action="#" th:action="@{'/users/'+${userId}+'/createRequest'}"
+		th:object="${request}" method="post">
+		<label for="requestCategory">Category</label> <input type="text"
+			th:field="*{requestCategory}" id="requestCategory"
+			placeholder="Category" /> <br /> <label for="requestPriority">Priority</label>
+		<input type="text" th:field="*{requestPriority}" id="requestPriority"
+			placeholder="Priority" /> <br /> <label for="requestSubject">Subject</label>
+		<input type="text" th:field="*{requestSubject}" id="requestSubject"
+			placeholder="Subject" /> <br /> <label for="requestDetails">Details</label>
+		<textarea type="text" th:field="*{requestDetails}" id="requestDetails"
+			placeholder="Details" />
+			<br />
+		<input type="submit" class="btn btn-primary"
+				value=" Submit ">
+		<input type="hidden" id="id" th:field="*{id}">
+	</form>
+</body>
+
+</html>
